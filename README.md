@@ -1,6 +1,14 @@
+# PalServer Crash Logs
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Companion app for the tools in [PalServer-Monitor](https://github.com/PenguinOfWar/PalServer-Monitor). Reads logs and performance metrics from Amazon S3 and displays them in log and time series format.
+
 ## Getting Started
+
+Copy `.env.example` to `.env` and populate the required environment variables.
+
+**Do not commit your `.env` file!**
 
 First, run the development server:
 
