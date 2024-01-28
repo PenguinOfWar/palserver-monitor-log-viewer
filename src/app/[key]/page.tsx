@@ -56,20 +56,20 @@ export default async function EventPage({
       </div>
       <Card className="mb-5">
         <CardHeader>
-          <CardTitle>Event log</CardTitle>
-          <CardDescription>Usage ahead of PalServer crash</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Log event={event} />
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
           <CardTitle>Time Series</CardTitle>
           <CardDescription>Visualised usage.</CardDescription>
         </CardHeader>
         <CardContent>
           <TimeSeries event={event} />
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Event log</CardTitle>
+          <CardDescription>Usage ahead of PalServer crash</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Log event={event} />
         </CardContent>
       </Card>
     </div>
