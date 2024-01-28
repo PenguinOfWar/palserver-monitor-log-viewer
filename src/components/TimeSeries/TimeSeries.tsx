@@ -11,8 +11,9 @@ export default function TimeSeries({ event }: { event: EventObject[] }) {
   return (
     <Plot
       data={data}
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: '100%' }}
       layout={{
+        height: 450,
         showlegend: true,
         legend: { orientation: 'h' },
         yaxis: { title: 'Memory' },
@@ -24,6 +25,9 @@ export default function TimeSeries({ event }: { event: EventObject[] }) {
         margin: {
           t: 0
         }
+      }}
+      config={{
+        responsive: true
       }}
     />
   );

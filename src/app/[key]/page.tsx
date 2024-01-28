@@ -46,9 +46,11 @@ export default async function EventPage({
 
   return (
     <div>
-      <div className="pb-5 flex items-center">
-        <TypographyH1 className="grow">Event: {key}</TypographyH1>
-        <Button asChild className="flex">
+      <div className="pb-5 lg:flex items-center">
+        <TypographyH1 className="grow pb-3 lg:pb-0 break-words">
+          Event: {key}
+        </TypographyH1>
+        <Button asChild className="flex max-w-max">
           <Link href="/">Back</Link>
         </Button>
       </div>
