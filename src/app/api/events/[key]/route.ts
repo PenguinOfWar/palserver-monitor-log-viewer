@@ -9,7 +9,7 @@ export async function GET(
 ) {
   const { key } = params;
 
-  const file = await readS3File(key);
+  const file = await readS3File(key, 'log/');
 
   const arr: string[][] = parse(file);
 
