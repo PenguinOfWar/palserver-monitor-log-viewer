@@ -11,6 +11,7 @@ export default async function getS3Files(): Promise<_Object[]> {
 
   const command = new ListObjectsV2Command({
     Bucket: String(process.env.AWS_BUCKET),
+    Prefix: 'log/',
     // The default and maximum number of keys returned is 1000. This limits it to
     // one for demonstration purposes.
     MaxKeys: 1
@@ -26,7 +27,12 @@ export default async function getS3Files(): Promise<_Object[]> {
         await client.send(command);
 
       if (Contents) {
-        contents = [...contents, ...Contents];
+        contents = [
+          ...contents,
+          ...(Contents.map(item =>
+            Number(item.Size) > 0 ? { ...item } : false
+          ).filter(Boolean) as _Object[])
+        ];
       }
 
       isTruncated = !!IsTruncated;

@@ -1,6 +1,9 @@
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
 
-export default async function readS3File(Key: string): Promise<string> {
+export default async function readS3File(
+  Key: string,
+  prefix?: string
+): Promise<string> {
   const client = new S3Client({
     region: String(process.env.AWS_REGION),
     credentials: {
@@ -11,7 +14,7 @@ export default async function readS3File(Key: string): Promise<string> {
 
   const command = new GetObjectCommand({
     Bucket: String(process.env.AWS_BUCKET),
-    Key
+    Key: `${prefix ? prefix : ''}${Key}`
   });
 
   try {

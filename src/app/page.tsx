@@ -21,17 +21,36 @@ import prettyBytes from 'pretty-bytes';
 import { Fragment } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { removeLogFromPath } from '@/utils/removeLogFromPath';
+import readS3File from '@/utils/readS3File';
+import { parse } from 'csv-parse/sync';
+import convertToObject from '@/utils/convertToObject';
+import Perf from '@/components/Perf/Perf';
 
 async function fetchLogs() {
   return await getS3Files();
 }
 
+async function fetchPerf() {
+  const file = await readS3File('palserver.csv', 'perf/');
+
+  if (file === 'Error') {
+    return false;
+  }
+
+  const arr: string[][] = parse(file);
+
+  return convertToObject(arr);
+}
+
 export default async function Home() {
   const files = await fetchLogs();
+  const perf = await fetchPerf();
 
   return (
     <Fragment>
       <TypographyH1 className="pb-5">PalServer Crash Logs</TypographyH1>
+      {perf && <Perf event={perf} />}
       <Card>
         <CardHeader>
           <CardTitle>Logs</CardTitle>
@@ -56,10 +75,14 @@ export default async function Home() {
                   <TableRow key={file.Key}>
                     <TableCell>
                       <Button asChild>
-                        <Link href={`/${String(file.Key)}`}>View</Link>
+                        <Link href={`/${removeLogFromPath(String(file.Key))}`}>
+                          View
+                        </Link>
                       </Button>
                     </TableCell>
-                    <TableCell className="font-medium">{file.Key}</TableCell>
+                    <TableCell className="font-medium">
+                      {removeLogFromPath(String(file.Key))}
+                    </TableCell>
                     <TableCell className="w-[100px]">
                       {prettyBytes(Number(file.Size))}
                     </TableCell>

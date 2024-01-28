@@ -20,6 +20,9 @@ export default function TimeSeries({ event }: { event: EventObject[] }) {
           title: 'CPU / MEM %',
           overlaying: 'y',
           side: 'right'
+        },
+        margin: {
+          t: 0
         }
       }}
     />

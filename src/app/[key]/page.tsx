@@ -21,7 +21,7 @@ const TimeSeries = dynamic(() => import('@/components/TimeSeries/TimeSeries'), {
 });
 
 async function fetchEvent(key: string) {
-  const file = await readS3File(key);
+  const file = await readS3File(key, 'log/');
 
   if (file === 'Error') {
     return false;
