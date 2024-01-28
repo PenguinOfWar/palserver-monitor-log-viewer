@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import '../styles/globals.scss';
 
 export const metadata: Metadata = {
-  title: 'ElDudeBros PalServer Crash Log',
+  title: 'PalServer Crash Logs',
   description: 'View logs and performance metrics for PalServer crash events'
 };
 

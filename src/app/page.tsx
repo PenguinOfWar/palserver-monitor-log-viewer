@@ -24,14 +24,14 @@ async function fetchLogs() {
   return await getS3Files();
 }
 
+export const fetchCache = 'force-no-store';
+
 export default async function Home() {
   const files = await fetchLogs();
 
   return (
     <main className="container mx-auto py-5">
-      <TypographyH1 className="pb-3">
-        ElDudeBros PalServer Crash Logs
-      </TypographyH1>
+      <TypographyH1 className="pb-3">PalServer Crash Logs</TypographyH1>
       <Card>
         <CardHeader>
           <CardTitle>Logs</CardTitle>
