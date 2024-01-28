@@ -20,8 +20,8 @@ export default function Log({ event }: { event: EventObject[] }) {
           <TableHead>Status</TableHead>
           <TableHead>CPU %</TableHead>
           <TableHead>Mem %</TableHead>
-          <TableHead>Mem (VSZ)</TableHead>
-          <TableHead>Mem (RSS)</TableHead>
+          <TableHead>Mem (Allocated)</TableHead>
+          <TableHead>Mem (Wired)</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

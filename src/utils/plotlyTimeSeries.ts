@@ -42,7 +42,7 @@ export default function plotlyTimeSeries(event: EventObject[]) {
       type: 'scatter',
       mode: 'lines+markers',
       marker: { color: 'orange' },
-      name: 'Memory (VSZ)'
+      name: 'Memory (Allocated)'
     },
     {
       x: timeX,
@@ -50,7 +50,7 @@ export default function plotlyTimeSeries(event: EventObject[]) {
       type: 'scatter',
       mode: 'lines+markers',
       marker: { color: 'green' },
-      name: 'Memory (RSS)'
+      name: 'Memory (Wired)'
     }
   ];
 }
