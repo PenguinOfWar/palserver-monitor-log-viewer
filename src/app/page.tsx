@@ -18,7 +18,9 @@ import {
 import getS3Files from '@/utils/getS3Files';
 import dayjs from 'dayjs';
 import prettyBytes from 'pretty-bytes';
-import Log from '@/components/Log/Log';
+import { Fragment } from 'react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 async function fetchLogs() {
   return await getS3Files();
@@ -28,8 +30,8 @@ export default async function Home() {
   const files = await fetchLogs();
 
   return (
-    <main className="container mx-auto py-5">
-      <TypographyH1 className="pb-3">PalServer Crash Logs</TypographyH1>
+    <Fragment>
+      <TypographyH1 className="pb-5">PalServer Crash Logs</TypographyH1>
       <Card>
         <CardHeader>
           <CardTitle>Logs</CardTitle>
@@ -53,7 +55,9 @@ export default async function Home() {
                 files.map(file => (
                   <TableRow key={file.Key}>
                     <TableCell>
-                      <Log s3Key={String(file.Key)} />
+                      <Button asChild>
+                        <Link href={`/${String(file.Key)}`}>View</Link>
+                      </Button>
                     </TableCell>
                     <TableCell className="font-medium">{file.Key}</TableCell>
                     <TableCell className="w-[100px]">
@@ -68,6 +72,6 @@ export default async function Home() {
           </Table>
         </CardContent>
       </Card>
-    </main>
+    </Fragment>
   );
 }

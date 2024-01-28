@@ -1,5 +1,6 @@
 'use server';
 
+import convertToObject from '@/utils/convertToObject';
 import readS3File from '@/utils/readS3File';
 import { parse } from 'csv-parse/sync';
 
@@ -8,5 +9,5 @@ export async function readLog(Key: string) {
 
   const arr: string[][] = parse(file);
 
-  return arr;
+  return convertToObject(arr);
 }
