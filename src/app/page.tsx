@@ -24,8 +24,6 @@ async function fetchLogs() {
   return await getS3Files();
 }
 
-export const fetchCache = 'force-no-store';
-
 export default async function Home() {
   const files = await fetchLogs();
 
