@@ -43,6 +43,8 @@ async function fetchPerf() {
   return convertToObject(arr);
 }
 
+export const dynamic = 'force-dynamic'; // defaults to auto
+
 export default async function Home() {
   const files = await fetchLogs();
   const perf = await fetchPerf();
